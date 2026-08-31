@@ -1,0 +1,1878 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap');
+
+
+:root {
+
+    --black: #151412;
+    --dark: #1d1b18;
+
+    --cream: #e8e0d2;
+
+    --muted: #999187;
+
+    --copper: #a86745;
+
+    --gold: #b19a68;
+
+    --line: #36322c;
+
+    --white: #f5f1e9;
+
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    background: var(--black);
+
+    color: var(--cream);
+
+    font-family: "Inter", sans-serif;
+
+    overflow-x: hidden;
+
+}
+
+
+body.story-mode {
+
+    background: #100f0d;
+
+}
+
+
+button,
+a {
+
+    font: inherit;
+
+}
+
+
+button {
+
+    cursor: pointer;
+
+}
+
+
+a {
+
+    text-decoration: none;
+
+    color: inherit;
+
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+
+.top-bar {
+
+    position: fixed;
+
+    top: 30px;
+
+    right: 40px;
+
+    z-index: 999;
+
+}
+
+
+.mode-switch {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 8px 12px;
+
+    background: rgba(29, 27, 24, .9);
+
+    border: 1px solid var(--line);
+
+    border-radius: 50px;
+
+    backdrop-filter: blur(15px);
+
+}
+
+
+.mode-label {
+
+    border: none;
+
+    background: transparent;
+
+    color: #777;
+
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    transition: .3s;
+
+}
+
+
+.mode-label.active {
+
+    color: var(--cream);
+
+}
+
+
+.sun {
+
+    color: var(--gold);
+
+}
+
+
+.moon {
+
+    color: var(--copper);
+
+}
+
+
+.switch-track {
+
+    width: 44px;
+
+    height: 23px;
+
+    background: #0c0c0b;
+
+    border: 1px solid var(--line);
+
+    border-radius: 50px;
+
+    padding: 3px;
+
+    cursor: pointer;
+
+}
+
+
+.switch-dot {
+
+    width: 15px;
+
+    height: 15px;
+
+    border-radius: 50%;
+
+    background: var(--gold);
+
+    transition: .45s cubic-bezier(.77,0,.18,1);
+
+}
+
+
+.switch-track.story-active .switch-dot {
+
+    transform: translateX(20px);
+
+    background: var(--copper);
+
+}
+
+
+/* =========================================
+   PAGE SYSTEM
+========================================= */
+
+
+.page {
+
+    display: none;
+
+    opacity: 0;
+
+}
+
+
+.page.active-page {
+
+    display: block;
+
+    animation: pageIn .7s ease forwards;
+
+}
+
+
+@keyframes pageIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =========================================
+   WORK HERO
+========================================= */
+
+
+.work-hero {
+
+    min-height: 100vh;
+
+    padding: 180px 9% 100px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+}
+
+
+.hero-small-text {
+
+    color: var(--gold);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 40px;
+
+}
+
+
+.work-hero h1 {
+
+    max-width: 1150px;
+
+    font-size: clamp(3.5rem, 7.5vw, 8rem);
+
+    line-height: .92;
+
+    letter-spacing: -6px;
+
+    font-weight: 600;
+
+}
+
+
+.work-hero h1 span {
+
+    color: var(--copper);
+
+}
+
+
+.hero-description {
+
+    max-width: 620px;
+
+    color: var(--muted);
+
+    font-size: 1.05rem;
+
+    margin-top: 45px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =========================================
+   GENERAL SECTIONS
+========================================= */
+
+
+.skills-section,
+.featured-project,
+.social-section {
+
+    padding: 150px 9%;
+
+    border-top: 1px solid var(--line);
+
+}
+
+
+.section-introduction {
+
+    margin-bottom: 100px;
+
+}
+
+
+.section-number {
+
+    color: var(--gold);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.section-introduction h2 {
+
+    font-size: clamp(3rem, 7vw, 7rem);
+
+    line-height: .9;
+
+    letter-spacing: -5px;
+
+    margin: 25px 0;
+
+}
+
+
+.section-introduction p {
+
+    color: var(--muted);
+
+    max-width: 450px;
+
+}
+
+
+/* =========================================
+   SKILLS
+========================================= */
+
+
+.skill-card {
+
+    display: grid;
+
+    grid-template-columns: 1.15fr .85fr;
+
+    gap: 80px;
+
+    align-items: center;
+
+    margin-bottom: 180px;
+
+}
+
+
+.skill-card.reverse {
+
+    grid-template-columns: .85fr 1.15fr;
+
+}
+
+
+.skill-card.reverse .skill-image {
+
+    order: 2;
+
+}
+
+
+.skill-image {
+
+    position: relative;
+
+    height: 550px;
+
+    overflow: hidden;
+
+    background: var(--dark);
+
+}
+
+
+.skill-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    filter: saturate(.65);
+
+    opacity: .8;
+
+    transition: transform 1s ease;
+
+}
+
+
+.skill-card:hover .skill-image img {
+
+    transform: scale(1.04);
+
+}
+
+
+.image-number {
+
+    position: absolute;
+
+    bottom: 25px;
+
+    right: 25px;
+
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 50%;
+
+    display: grid;
+
+    place-items: center;
+
+    background: var(--black);
+
+    color: var(--gold);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 12px;
+
+}
+
+
+.skill-content > span,
+.project-description > span,
+.mission > span,
+.collaboration > span {
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: var(--gold);
+
+}
+
+
+.skill-content h3 {
+
+    font-size: clamp(2.3rem, 4vw, 4.5rem);
+
+    line-height: .95;
+
+    letter-spacing: -3px;
+
+    margin: 25px 0;
+
+}
+
+
+.skill-content p {
+
+    color: var(--muted);
+
+    line-height: 1.8;
+
+    max-width: 500px;
+
+}
+
+
+.skill-content small {
+
+    display: block;
+
+    margin-top: 30px;
+
+    color: var(--cream);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================
+   FEATURED PROJECT
+========================================= */
+
+
+.project-container {
+
+    display: grid;
+
+    grid-template-columns: 1.1fr .9fr;
+
+    gap: 80px;
+
+    align-items: center;
+
+}
+
+
+.project-visual {
+
+    background: #111;
+
+    padding: 0px;
+
+    border: 1px solid var(--line);
+
+}
+
+
+.terminal {
+
+    background: #080807;
+
+    border: 1px solid #302e29;
+
+    min-height: 350px;
+
+}
+
+
+.terminal-header {
+
+    padding: 15px;
+
+    border-bottom: 1px solid #302e29;
+
+}
+
+
+.terminal-header span {
+
+    display: inline-block;
+
+    width: 8px;
+
+    height: 8px;
+
+    background: #555;
+
+    border-radius: 50%;
+
+    margin-right: 5px;
+
+}
+
+
+.terminal-body {
+
+    padding: 40px;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 13px;
+
+    line-height: 2.5;
+
+    color: #aaa;
+
+}
+
+
+.terminal-body .green {
+
+    color: var(--gold);
+
+}
+
+
+.project-description h3 {
+
+    font-size: clamp(2.5rem, 5vw, 5rem);
+
+    line-height: .95;
+
+    letter-spacing: -3px;
+
+    margin: 25px 0;
+
+}
+
+
+.project-description p {
+
+    color: var(--muted);
+
+    line-height: 1.8;
+
+}
+
+
+.project-tools {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 30px;
+
+}
+
+
+.project-tools span {
+
+    border: 1px solid var(--line);
+
+    padding: 8px 13px;
+
+    border-radius: 50px;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================
+   STORY
+========================================= */
+
+
+.story-intro {
+
+    min-height: 100vh;
+
+    padding: 160px 9% 100px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 100px;
+
+    align-items: center;
+
+}
+
+
+.story-photo {
+
+    height: 650px;
+
+    overflow: hidden;
+
+}
+
+
+.story-photo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    filter: saturate(.7);
+
+}
+
+
+.story-heading > span {
+
+    color: var(--copper);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.story-heading h1 {
+
+    font-size: clamp(5rem, 10vw, 10rem);
+
+    line-height: .8;
+
+    letter-spacing: -7px;
+
+    margin: 30px 0;
+
+}
+
+
+.story-heading p {
+
+    color: var(--muted);
+
+}
+
+
+.story-content {
+
+    border-top: 1px solid var(--line);
+
+}
+
+
+.story-block {
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    padding: 160px 9%;
+
+    border-bottom: 1px solid var(--line);
+
+}
+
+
+.story-number {
+
+    color: var(--copper);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.story-block h2 {
+
+    font-size: clamp(2.5rem, 5vw, 5rem);
+
+    line-height: 1;
+
+    letter-spacing: -3px;
+
+    margin: 35px 0 50px;
+
+}
+
+
+.story-block p {
+
+    max-width: 650px;
+
+    color: var(--muted);
+
+    line-height: 1.9;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* =========================================
+   MISSION
+========================================= */
+
+
+.mission {
+
+    padding: 180px 9%;
+
+    background: #1b1915;
+
+}
+
+
+.mission h2 {
+
+    max-width: 1000px;
+
+    font-size: clamp(3.5rem, 7vw, 7rem);
+
+    line-height: .9;
+
+    letter-spacing: -5px;
+
+    margin: 35px 0;
+
+}
+
+
+.mission p {
+
+    max-width: 600px;
+
+    color: var(--muted);
+
+    line-height: 1.8;
+
+}
+
+
+/* =========================================
+   CV
+========================================= */
+
+
+.cv-section {
+
+    padding: 150px 9%;
+
+    text-align: center;
+
+    border-bottom: 1px solid var(--line);
+
+}
+
+
+.cv-section p {
+
+    color: var(--muted);
+
+    margin-bottom: 35px;
+
+}
+
+
+.cv-button {
+
+    display: inline-block;
+
+    padding: 18px 28px;
+
+    background: var(--cream);
+
+    color: var(--black);
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    transition: .3s;
+
+}
+
+
+.cv-button:hover {
+
+    background: var(--gold);
+
+}
+
+
+/* =========================================
+   COLLABORATION
+========================================= */
+
+
+.collaboration {
+
+    padding: 180px 9%;
+
+}
+
+
+.collaboration h2 {
+
+    max-width: 900px;
+
+    font-size: clamp(4rem, 8vw, 8rem);
+
+    line-height: .85;
+
+    letter-spacing: -6px;
+
+    margin: 30px 0;
+
+}
+
+
+.collaboration p {
+
+    max-width: 550px;
+
+    color: var(--muted);
+
+    line-height: 1.8;
+
+    margin-bottom: 40px;
+
+}
+
+
+.email-button {
+
+    background: transparent;
+
+    border: 1px solid var(--cream);
+
+    color: var(--cream);
+
+    padding: 16px 25px;
+
+    transition: .3s;
+
+}
+
+
+.email-button:hover {
+
+    background: var(--cream);
+
+    color: var(--black);
+
+}
+
+
+#copyMessage {
+
+    display: none;
+
+    color: var(--gold);
+
+    margin-left: 15px;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================
+   SOCIALS
+========================================= */
+
+
+.social-section {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.social-section > span {
+
+    color: var(--muted);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.social-links {
+
+    display: flex;
+
+    gap: 40px;
+
+}
+
+
+.social-links a {
+
+    transition: .3s;
+
+}
+
+
+.social-links a:hover {
+
+    color: var(--gold);
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+
+footer {
+
+    padding: 35px 9%;
+
+    border-top: 1px solid var(--line);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #625f58;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+
+@media (max-width: 800px) {
+
+
+    .top-bar {
+
+        top: 20px;
+
+        right: 15px;
+
+    }
+
+
+    .mode-switch {
+
+        gap: 7px;
+
+    }
+
+
+    .work-hero {
+
+        padding: 150px 7% 80px;
+
+    }
+
+
+    .work-hero h1 {
+
+        font-size: clamp(3rem, 14vw, 6rem);
+
+        letter-spacing: -4px;
+
+    }
+
+
+    .skills-section,
+    .featured-project,
+    .social-section {
+
+        padding: 100px 7%;
+
+    }
+
+
+    .section-introduction {
+
+        margin-bottom: 70px;
+
+    }
+
+
+    .skill-card,
+    .skill-card.reverse,
+    .project-container {
+
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+
+        margin-bottom: 120px;
+
+    }
+
+
+    .skill-card.reverse .skill-image {
+
+        order: initial;
+
+    }
+
+
+    .skill-image {
+
+        height: 400px;
+
+    }
+
+
+    .skill-content h3 {
+
+        font-size: 2.8rem;
+
+    }
+
+
+    .story-intro {
+
+        grid-template-columns: 1fr;
+
+        padding: 130px 7% 80px;
+
+        gap: 50px;
+
+    }
+
+
+    .story-photo {
+
+        height: 450px;
+
+    }
+
+
+    .story-heading h1 {
+
+        font-size: 5rem;
+
+        letter-spacing: -5px;
+
+    }
+
+
+    .story-block {
+
+        padding: 100px 7%;
+
+    }
+
+
+    .story-block h2 {
+
+        font-size: 2.8rem;
+
+    }
+
+
+    .mission,
+    .cv-section,
+    .collaboration {
+
+        padding: 110px 7%;
+
+    }
+
+
+    .mission h2,
+    .collaboration h2 {
+
+        font-size: 4rem;
+
+        letter-spacing: -4px;
+
+    }
+
+
+    .social-section {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 30px;
+
+    }
+
+
+    footer {
+
+        flex-direction: column;
+
+        gap: 12px;
+
+        padding: 30px 7%;
+
+    }
+
+}
+/* =========================================
+   MEMORY STACK
+   ========================================= */
+
+.memory-section {
+    min-height: 100vh;
+    padding: 140px 8vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #0b0b0a;
+    color: #f4eee3;
+}
+
+.memory-heading {
+    width: 100%;
+    max-width: 1100px;
+    margin-bottom: 70px;
+    text-align: center;
+}
+
+.memory-heading span {
+    display: block;
+    margin-bottom: 18px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #b88a63;
+}
+
+.memory-heading h2 {
+    margin: 0;
+    font-size: clamp(42px, 7vw, 88px);
+    line-height: 0.95;
+    letter-spacing: -4px;
+    font-weight: 600;
+}
+
+.memory-heading p {
+    max-width: 430px;
+    margin: 25px auto 0;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #a9a39a;
+}
+
+.memory-stack {
+    position: relative;
+    width: 360px;
+    height: 470px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.memory-card {
+    position: absolute;
+    width: 330px;
+    padding: 12px 12px 30px;
+    background: #eee9df;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+    color: #181714;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease;
+}
+
+.memory-card:active {
+    cursor: grabbing;
+}
+
+.memory-card img {
+    display: block;
+    width: 100%;
+    height: 365px;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.memory-card p {
+    margin: 13px 4px 0;
+    font-family: "Brush Script MT", "Segoe Script", cursive;
+    font-size: 21px;
+}
+
+.memory-card:nth-child(1) {
+    transform: rotate(5deg) translate(18px, -5px);
+}
+
+.memory-card:nth-child(2) {
+    transform: rotate(-5deg) translate(-14px, 2px);
+}
+
+.memory-card:nth-child(3) {
+    transform: rotate(3deg) translate(10px, 5px);
+}
+
+.memory-card:nth-child(4) {
+    transform: rotate(-3deg) translate(-8px, 3px);
+}
+
+.memory-card:nth-child(5) {
+    transform: rotate(6deg) translate(4px, -2px);
+}
+
+.memory-card:nth-child(6) {
+    transform: rotate(-2deg);
+}
+
+.memory-hint {
+    margin-top: 65px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #817b72;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .memory-section {
+        padding: 100px 20px;
+    }
+
+    .memory-heading h2 {
+        letter-spacing: -2px;
+    }
+
+    .memory-stack {
+        width: 310px;
+        height: 420px;
+    }
+
+    .memory-card {
+        width: 285px;
+        padding: 10px 10px 25px;
+    }
+
+    .memory-card img {
+        height: 315px;
+    }
+
+}
+/* =========================================
+   FEATURED PROJECT
+   ========================================= */
+
+.featured-project {
+    padding: 120px 0;
+}
+
+.project-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 35px;
+    align-items: start;
+}
+
+.project-heading {
+    padding: 20px 0;
+}
+
+.project-heading .section-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.project-heading h2 {
+    font-size: clamp(42px, 5vw, 72px);
+    line-height: 0.95;
+    margin: 0 0 30px;
+    font-weight: 700;
+}
+
+.project-description {
+    max-width: 470px;
+    line-height: 1.8;
+    opacity: 0.7;
+    font-size: 16px;
+}
+
+.project-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.project-tools span {
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 9px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+}
+
+
+/* PROJECT IMAGE */
+
+.project-visual {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #111;
+}
+
+.project-visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+
+/* IMAGE OVERLAY */
+
+.project-overlay {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 14px 18px;
+
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+}
+
+.project-overlay span {
+    font-size: 13px;
+}
+
+.project-overlay p {
+    margin: 0;
+    font-size: 11px;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+
+/* TERMINAL */
+
+.project-terminal {
+    grid-column: 1 / -1;
+    margin-top: 5px;
+
+    background: #0d0d0d;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.terminal-header {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.terminal-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.terminal-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #777;
+}
+
+.terminal-body {
+    padding: 25px;
+    font-family: monospace;
+    font-size: 13px;
+    line-height: 2;
+}
+
+.terminal-body p {
+    margin: 0;
+}
+
+.terminal-body .gold {
+    opacity: 0.8;
+}
+
+.terminal-success {
+    margin-top: 10px !important;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .featured-project {
+        padding: 80px 20px;
+    }
+
+    .project-container {
+        grid-template-columns: 1fr;
+    }
+
+    .project-visual {
+        height: auto;
+    }
+
+    .project-terminal {
+        grid-column: auto;
+    }
+
+}
+/* =========================================
+   WORK IMAGES - LARGE + FULLY VISIBLE
+   ========================================= */
+
+.work-page .skill-image {
+    width: 100%;
+    height: 430px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #111;
+    border-radius: 12px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.work-page .skill-image img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: center;
+}
+
+
+/* =========================================
+   FEATURED IoT PROJECT IMAGE
+   ========================================= */
+
+.featured-project .project-visual {
+    width: 100%;
+    height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #111;
+    border-radius: 12px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.featured-project .project-visual img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: center;
+}
+
+
+/* =========================================
+   KEEP WORK CARDS CLEAN
+   ========================================= */
+
+.work-page .skill-card {
+    overflow: hidden;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .work-page .skill-image {
+        height: 350px;
+    }
+
+    .featured-project .project-visual {
+        height: 400px;
+    }
+
+    .work-page .skill-image img,
+    .featured-project .project-visual img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+/* =========================================
+   WORK PROJECT IMAGES
+   FULL IMAGE - NO CROPPING - NO GAPS
+   ========================================= */
+
+.skill-image {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+}
+
+.skill-image img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================
+   FEATURED IoT PROJECT IMAGE
+   ========================================= */
+
+.project-visual {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+}
+
+.project-visual img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: center;
+    margin: 0;
+    padding: 0;
+}
+/* =========================================
+   FINAL WORK IMAGE FIX
+   ========================================= */
+
+/* Remove unwanted space around work images */
+.work-page .skill-image,
+.work-page .project-visual {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+}
+
+/* Keep the entire image visible */
+.work-page .skill-image img,
+.work-page .project-visual img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+/* FEATURED IoT PROJECT IMAGE - FINAL FIX */
+
+.project-visual {
+    width: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.project-visual img {
+    width: 100%;
+    height: auto !important;
+    max-width: 100%;
+    max-height: none !important;
+    display: block;
+    object-fit: contain !important;
+    object-position: center;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+/* ===== IoT FEATURED PROJECT ===== */
+
+.featured-project .project-visual {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    overflow: hidden !important;
+    background: transparent !important;
+}
+
+.featured-project .project-visual img {
+    width: 100% !important;
+    height: auto !important;
+
+    max-width: 100% !important;
+    max-height: none !important;
+
+    display: block !important;
+
+    object-fit: fill !important;
+    object-position: center !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+/* ===== SHOW FULL WORK IMAGES ===== */
+
+.featured-project .project-visual {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.featured-project .project-visual img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: none !important;
+
+    object-fit: contain !important;
+    object-position: center !important;
+
+    display: block !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+}
+/* ===== FINAL FIX FOR FEATURED PROJECT IMAGE ===== */
+
+#workPage .featured-project .project-container {
+    overflow: visible !important;
+}
+
+#workPage .featured-project .project-visual {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    overflow: visible !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#workPage .featured-project .project-visual img {
+    display: block !important;
+
+    width: 100% !important;
+    height: auto !important;
+
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 100% !important;
+    max-height: none !important;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+/* ===== FIX NETWORKING + APPLICATION DEVELOPMENT IMAGES ===== */
+
+.featured-project .project-visual {
+    padding: 0 !important;
+    overflow: visible !important;
+}
+
+/* Networking image */
+img[src*="network-security"] {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    display: block !important;
+}
+
+/* Application Development image */
+img[src*="web-development"] {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    display: block !important;
+}
+/* FINAL FIX - NETWORKING & APPLICATION DEVELOPMENT */
+
+#workPage .skill-image {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+#workPage .skill-image img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    display: block !important;
+}
